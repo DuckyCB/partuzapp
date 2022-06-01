@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { 
 	Button,
 } from 'react-native-paper';
 
-export default function Home({ theme }) {
+export default function Home({ navigation }) {
 
 	return (
-		<View style={[styles.container, { backgroundColor: theme.colors.surface }]}>
+		<View style={[styles.container, { backgroundColor: '#FF0000' }]}>
 			<Text>Home screen</Text>
 			<Button
 				title="Go to config"
@@ -16,3 +16,11 @@ export default function Home({ theme }) {
 		</View>
 	);
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});

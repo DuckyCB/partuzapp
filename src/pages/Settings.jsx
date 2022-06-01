@@ -5,7 +5,7 @@ import cat from '../../public/assets/cat.png';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing'; 
 
-export default function Config() {
+export default function Settings() {
     const [selectedImage, setSelectedImage] = React.useState(cat);
 
     let openImagePickerAsync = async () => {
