@@ -1,7 +1,13 @@
 # PartuzApp
 
+## Install
+        npm i --global expo-cli
+        npm i
 ## Run
         expo start
+
+## Expo login
+        expo signin
 
 ## Technologies
 
