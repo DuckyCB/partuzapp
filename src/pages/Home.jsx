@@ -10,8 +10,8 @@ export default function Home({ navigation }) {
 		<View style={[styles.container, { backgroundColor: '#FF0000' }]}>
 			<Text>Home screen</Text>
 			<Button
-				title="Go to config"
-				onPress={() => navigation.navigate('Config')}
+				title="Go to settings"
+				onPress={() => navigation.navigate('Settings')}
 			/>
 		</View>
 	);

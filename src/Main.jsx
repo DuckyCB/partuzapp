@@ -2,6 +2,7 @@ import react from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import StackNavigation from './navigation/StackNavigation';
 // Screens
 import Home from './pages/Home';
 import Chats from './pages/ChatList';
@@ -15,7 +16,7 @@ export default function Main() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      {/* <Tab.Navigator
         initialRouteName={HOME}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -42,12 +43,11 @@ export default function Main() {
           style: { padding: 10, height: 70}
         }}
       >
-      
-
         <Tab.Screen name={HOME} component={Home}/>
         <Tab.Screen name={CHATSLIST} component={Chats} options={{ tabBarBadge: 3 }}/>
         <Tab.Screen name={PROFILE} component={Profile} />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
+      <StackNavigation/>
     </NavigationContainer>
   );
 }

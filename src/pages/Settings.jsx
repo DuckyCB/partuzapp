@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import cat from '../../public/assets/cat.png';
+import cat from '../../assets/images/cat.png';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing'; 
 
