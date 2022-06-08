@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { 
 	Button,
@@ -6,21 +6,46 @@ import {
 
 export default function Home({ navigation }) {
 
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			headerShow: false,
+		});
+	}, []);
+
 	return (
-		<View style={[styles.container, { backgroundColor: '#FF0000' }]}>
-			<Text>Home screen</Text>
+		<View style={styles.container}>
 			<Button
-				title="Go to settings"
-				onPress={() => navigation.navigate('Settings')}
-			/>
+				mode="contained"
+				style={styles.button}
+				onPress={() => navigation.navigate('Home')}
+			>
+				Home
+			</Button>
+			<Button
+				mode="contained"
+				style={styles.button}
+				onPress={() => navigation.navigate('Chats')}
+			>
+				Chats
+			</Button>
+			<Button
+				mode="contained"
+				style={styles.button}
+				onPress={() => navigation.navigate('Profile')}
+			>
+				Profile
+			</Button>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'horizontal',
+  },
+	button: {
+		width: 100
+	}
 });

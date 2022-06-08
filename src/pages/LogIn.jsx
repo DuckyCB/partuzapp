@@ -9,6 +9,8 @@ const LogIn = () => {
   const [password, setPassword] = React.useState("");
 
   const handleLogin = () => {
+    const navigation = useNavigation();
+    navigation.navigate('Home');
     console.log(username, password);
   };
 
@@ -46,6 +48,7 @@ const styles = StyleSheet.create({
   input: {
     marginHorizontal: '25%',
     marginVertical: 10,
+    width: '50%',
   },
   button: {
     marginHorizontal: '25%',

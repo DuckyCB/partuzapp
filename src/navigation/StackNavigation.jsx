@@ -16,15 +16,15 @@ import Welcome from '../pages/Welcome';
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigation() {
-  const loggedUser = false;
+  const loggedUser = true;
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator defaultScreenOptions={{headerShown: false}}>
       {loggedUser ? (
         <>
           <Stack.Screen name={HOME} component={Home}/>
-          <Stack.Screen name={CHATSLIST} component={ChatsList}/>
           <Stack.Screen name={PROFILE} component={Profile}/>
+          <Stack.Screen name={CHATSLIST} component={ChatsList}/>
           <Stack.Screen name={CHAT} component={Chat}/>
           <Stack.Screen name={SETTINGS} component={Settings}/>
         </>
