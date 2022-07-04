@@ -1,6 +1,11 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+    View,
+    SafeAreaView,
+    Text,
+    StyleSheet
+} from 'react-native';
 import { 
 	IconButton,
 	useTheme,
@@ -11,7 +16,7 @@ export default function Navbar() {
     const navigation = useNavigation();
 
     return (
-        <View style={[styles.container, { backgroundColor: colors.background }]}>
+        <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
             <IconButton
                 icon='chat'
                 size={40}
@@ -30,7 +35,7 @@ export default function Navbar() {
                 style={styles.buttonHome}
                 onPress={() => navigation.navigate('Profile')}
             />
-        </View>
+        </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({
