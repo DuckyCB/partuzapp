@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, Image, StyleSheet} from 'react-native'
 import {TextInput, Button, useTheme} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
+import Navbar from '../components/Navbar'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Profile = () => {
@@ -10,31 +11,34 @@ const Profile = () => {
   const theme = useTheme;
 
   return (
-      <View style={styles.container1}>
-        <Ionicons name='person' size={120} />
-        <View style={styles.container2}>
-          <TextInput label='Name'
-                     value={name}
-                     onChangeText={name => setUsername(name)}
-                     style={styles.input}
-          />
-          <TextInput label='Age'
-                     value={age}
-                     onChangeText={age => setAge(age)}
-                     style={styles.input}
-          />
-          <Text style={styles.footer}>
-            Hello my name is Fedrico
-          </Text>
+      <View>
+        <Navbar />
+        <View style={styles.container1}>
+          <Ionicons name='person' size={120} />
           <View style={styles.container2}>
-            <Text>
-              -Football
+            <TextInput label='Name'
+                      value={name}
+                      onChangeText={name => setUsername(name)}
+                      style={styles.input}
+            />
+            <TextInput label='Age'
+                      value={age}
+                      onChangeText={age => setAge(age)}
+                      style={styles.input}
+            />
+            <Text style={styles.footer}>
+              Hello my name is Fedrico
             </Text>
-          </View>
-          <View style={styles.container2}>
-            <Text>
-              -Party
-            </Text>
+            <View style={styles.container2}>
+              <Text>
+                -Football
+              </Text>
+            </View>
+            <View style={styles.container2}>
+              <Text>
+                -Party
+              </Text>
+            </View>
           </View>
         </View>
       </View>

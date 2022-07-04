@@ -14,4 +14,7 @@
 - React Native
 - React Native Paper
 - Expo
-  
+
+## Useful links
+
+  Icons: https://materialdesignicons.com/

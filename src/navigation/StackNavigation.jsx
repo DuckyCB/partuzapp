@@ -19,7 +19,10 @@ export default function StackNavigation() {
   const loggedUser = true;
 
   return (
-    <Stack.Navigator defaultScreenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}
+    >
       {loggedUser ? (
         <>
           <Stack.Screen name={HOME} component={Home}/>

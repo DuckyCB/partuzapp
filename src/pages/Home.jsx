@@ -1,51 +1,31 @@
-import React, { useLayoutEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { useNavigation } from '@react-navigation/core';
 import { 
-	Button,
+	StyleSheet,
+	SafeAreaView,
+} from 'react-native';
+import { 
+	useTheme,
 } from 'react-native-paper';
+import Navbar from '../components/Navbar'
 
-export default function Home({ navigation }) {
-
-	useLayoutEffect(() => {
-		navigation.setOptions({
-			headerShow: false,
-		});
-	}, []);
+export default function Home() {
+	const navigation = useNavigation();
+	const { colors } = useTheme();
 
 	return (
-		<View style={styles.container}>
-			<Button
-				mode="contained"
-				style={styles.button}
-				onPress={() => navigation.navigate('Home')}
-			>
-				Home
-			</Button>
-			<Button
-				mode="contained"
-				style={styles.button}
-				onPress={() => navigation.navigate('Chats')}
-			>
-				Chats
-			</Button>
-			<Button
-				mode="contained"
-				style={styles.button}
-				onPress={() => navigation.navigate('Profile')}
-			>
-				Profile
-			</Button>
-		</View>
+		<SafeAreaView style={[
+				styles.container,
+				{ backgroundColor: colors.background }
+			]}
+		>
+			<Navbar />
+		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'horizontal',
-  },
-	button: {
-		width: 100
-	}
+	height: '100%',
+  }
 });
