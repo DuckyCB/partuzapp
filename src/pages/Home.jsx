@@ -6,11 +6,15 @@ import {
 	ScrollView,
 	View,
 	Image,
+	Animated,
 } from 'react-native';
 import {
 	BottomNavigation,
 	useTheme,
 } from 'react-native-paper';
+import {
+	createMaterialTopTabNavigator 
+} from '@react-navigation/material-top-tabs';
 import ChatsList from './ChatList';
 import Discover from './Discover';
 import Profile from './Profile';
@@ -43,9 +47,10 @@ export default function Home() {
 		key: 'purchased',
 		title: 'Purchased',
 		icon: 'shopping-music',
-		color: '#c51162',
+		color: '#2962ff',
 		},
 	]);
+	const Tab = createMaterialTopTabNavigator();
 
 	return (
 		<SafeAreaView style={[
@@ -53,6 +58,11 @@ export default function Home() {
 				{ backgroundColor: colors.background }
 			]}
 		>
+			{/* <Tab.Navigator>
+				<Tab.Screen name="Chats" component={ChatsList} />
+				<Tab.Screen name="Discover" component={Discover} />
+				<Tab.Screen name="Profile" component={Profile} />
+			</Tab.Navigator> */}
 			<BottomNavigation 
 				navigationState={{ index, routes }}
 				onIndexChange={index => setIndex(index)}

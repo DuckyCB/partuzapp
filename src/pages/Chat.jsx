@@ -7,9 +7,9 @@ import {
 	Text,
 	useTheme,
 } from 'react-native-paper'
-import Header from '../components/Header';
+import HeaderChat from '../components/HeaderChat';
 
-const Chat = ({ chat }) => {
+const Chat = ({ chatWith }) => {
 	const { colors } = useTheme();
 
 	return (
@@ -18,8 +18,8 @@ const Chat = ({ chat }) => {
 				{ backgroundColor: colors.background }
 			]}
 		>
-			<Header />
-			<Text>{chat?.name}</Text>
+			<HeaderChat color='#6200ee' name={chatWith?.name} />
+			<Text variant>{chatWith?.name}</Text>
 		</SafeAreaView>
 	);
 }

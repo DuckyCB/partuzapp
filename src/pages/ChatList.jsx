@@ -10,6 +10,7 @@ import {
     Text,
     useTheme,
 } from 'react-native-paper';
+import HeaderList from '../components/HeaderList'
 
 const ChatsList = () => {
     const { colors } = useTheme();
@@ -27,6 +28,17 @@ const ChatsList = () => {
         );
     }, [])
 
+    const handleListUpdate = () => {
+        setChatList(
+            [
+                {name: 'Juan', username: 'juan', lastMsg: 'vi a la rubia', time: '22:39'},
+                {name: 'Sherman', username: 'sherman', lastMsg: 'sale fortnite?', time: '22:38'},
+                {name: 'Chachi', username: 'chachi', lastMsg: 'no', time: '18:20'},
+                {name: 'Avergaston', username: 'avergaston', lastMsg: 'sale asseto?', time: '11:45'},
+            ]
+        );
+    }
+
     return (
         <View 
             style={[
@@ -34,6 +46,7 @@ const ChatsList = () => {
                 { backgroundColor: colors.background }
             ]}
         >
+            <HeaderList color='#6200ee' name='Chats' handleUpdate={handleListUpdate} />
             {chatList.length > 0 ? (
                 <ScrollView>
                     <List.Section>
@@ -46,13 +59,13 @@ const ChatsList = () => {
                                         <Text style={styles.time}>{chat.time}</Text>
                                     )}
                                     left={props => <List.Icon {...props} icon='account-circle' />}
-                                    onPress={() => navigation.navigate('Chat', { chat })}
+                                    onPress={() => navigation.navigate('Chat', { chatWith: chat })}
                                 />
                         })}
                     </List.Section>
                 </ScrollView>
             ) : (
-                <Text>No matches!</Text>
+                <Text variant="displaySmall">No matches!</Text>
             )}
         </View>
     );

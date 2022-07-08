@@ -9,23 +9,35 @@ import {
     IconButton,
 } from 'react-native-paper';
 
-const Header = () => {
+const HeaderChat = ({ color, name }) => {
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container} >
+        <View style={[
+            styles.container,
+            { backgroundColor: color }
+        ]} >
             <IconButton 
                 icon='arrow-left-bold'
                 onPress={() => navigation.goBack()}
             />
+            <Text variant="titleMedium">
+                {name}
+            </Text>
         </View>
     );
 }
 
-export default Header;
+export default HeaderChat;
 
 const styles = StyleSheet.create({
 	container: {
-	  height: '100%',
+	    height: 50,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
 	},
 });
