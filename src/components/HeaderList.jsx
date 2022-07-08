@@ -16,7 +16,10 @@ const HeaderList = ({ color, name, handleUpdate }) => {
             styles.container,
             { backgroundColor: color }
         ]} >
-            <Text variant="titleMedium">
+            <Text
+                style={styles.title}
+                variant="titleMedium"
+            >
                 {name}
             </Text>
             <IconButton 
@@ -39,4 +42,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
 	},
+    title: {
+        marginHorizontal: 15,
+        fontSize: 20,
+        fontWeight: 'bold',
+    }
 });

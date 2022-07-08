@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import {
     View,
+    SafeAreaView,
     ScrollView,
     StyleSheet
 } from 'react-native';
@@ -40,7 +41,7 @@ const ChatsList = () => {
     }
 
     return (
-        <View 
+        <SafeAreaView 
             style={[
                 styles.container,
                 { backgroundColor: colors.background }
@@ -59,7 +60,11 @@ const ChatsList = () => {
                                         <Text style={styles.time}>{chat.time}</Text>
                                     )}
                                     left={props => <List.Icon {...props} icon='account-circle' />}
-                                    onPress={() => navigation.navigate('Chat', { chatWith: chat })}
+                                    onPress={() => {
+                                        navigation.navigate('Chat', {
+                                            chatWith: chat
+                                        });
+                                    }}
                                 />
                         })}
                     </List.Section>
@@ -67,7 +72,7 @@ const ChatsList = () => {
             ) : (
                 <Text variant="displaySmall">No matches!</Text>
             )}
-        </View>
+        </SafeAreaView>
     );
 }
 

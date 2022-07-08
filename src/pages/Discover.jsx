@@ -11,6 +11,7 @@ import {
     IconButton,
     Card,
 } from 'react-native-paper';
+import { FlipInEasyX } from 'react-native-reanimated';
 import fut5Img from '../../assets/images/fut5.jpg';
 
 const Discover = () => {
@@ -53,29 +54,29 @@ const Discover = () => {
             {actualEvent ? (
                 <View>
                     <Card style={styles.card}>
-                        <Card.Cover source={{ uri: actualEvent.img }} />
+                        <Card.Cover 
+                            style={styles.image}
+                            source={{ uri: actualEvent.img }}
+                        />
                         <Card.Content>
                             <Title>{actualEvent.category}</Title>
                             <Paragraph>{actualEvent.description}</Paragraph>
                         </Card.Content>
-                        <Card.Actions>
+                        <Card.Actions style={styles.actions}>
                             <IconButton 
                                 icon='close-circle'
                                 iconColor='#f44336'
+                                size={30}
                                 onPress={() => handleReject()}
                             />
                             <IconButton 
                                 icon='heart'
                                 iconColor='#8bc34a'
+                                size={30}
                                 onPress={() => handleLike()}
                             />
                         </Card.Actions>
                     </Card>
-                    {/* <Image
-                        style={styles.image}
-                        source={actualEvent.img}
-                    /> */}
-                    {/* <Text>{actualEvent.name}</Text> */}
                 </View>
             ) : (
                 <View>
@@ -91,14 +92,21 @@ export default Discover;
 const styles = StyleSheet.create({
     container: {
         height: '100%',
+        width: '100%',
+        justifyContent: 'center',
         alignItems: 'center',
-        display: 'flex',
     },
     card: {
-        minWidth: '100%',
+        width: '80%',
     },
     image: {
-        width: 300,
-        height: 400,
+        width: '100%',
+        height: 200,
+    },
+    actions: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
     }
 });

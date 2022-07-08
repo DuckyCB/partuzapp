@@ -21,7 +21,10 @@ const HeaderChat = ({ color, name }) => {
                 icon='arrow-left-bold'
                 onPress={() => navigation.goBack()}
             />
-            <Text variant="titleMedium">
+            <Text
+                style={styles.title}
+                variant="titleMedium"
+            >
                 {name}
             </Text>
         </View>
@@ -36,8 +39,11 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'nowrap',
-        justifyContent: 'space-between',
         alignItems: 'center',
 	},
+    title: {
+        marginHorizontal: 15,
+        fontSize: 20,
+        fontWeight: 'bold',
+    }
 });

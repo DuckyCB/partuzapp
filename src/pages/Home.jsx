@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { 
 	StyleSheet,
-	SafeAreaView,
 	ScrollView,
 	View,
 	Image,
@@ -12,6 +11,7 @@ import {
 	BottomNavigation,
 	useTheme,
 } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
 	createMaterialTopTabNavigator 
 } from '@react-navigation/material-top-tabs';
