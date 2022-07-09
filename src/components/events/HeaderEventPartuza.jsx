@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/core';
 import {
     View,
     StyleSheet,
@@ -8,13 +9,18 @@ import {
     IconButton,
 } from 'react-native-paper';
 
-const HeaderList = ({ color, name, handleUpdate }) => {
+const HeaderEventPartuza = ({ color, name }) => {
+    const navigation = useNavigation();
 
     return (
         <View style={[
             styles.container,
             { backgroundColor: color }
         ]} >
+            <IconButton 
+                icon='arrow-left-bold'
+                onPress={() => navigation.goBack()}
+            />
             <Text
                 style={styles.title}
                 variant="titleMedium"
@@ -22,14 +28,14 @@ const HeaderList = ({ color, name, handleUpdate }) => {
                 {name}
             </Text>
             <IconButton 
-                icon='refresh'
-                onPress={() => handleUpdate()}
+                icon='calendar-edit'
+                onPress={() => navigation.goBack()}
             />
         </View>
     );
 }
 
-export default HeaderList;
+export default HeaderEventPartuza;
 
 const styles = StyleSheet.create({
 	container: {
@@ -37,8 +43,6 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'nowrap',
-        justifyContent: 'space-between',
         alignItems: 'center',
 	},
     title: {

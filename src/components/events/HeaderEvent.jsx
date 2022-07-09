@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
 } from 'react-native';
 import {
     Text,
+    Portal,
+    Modal,
     IconButton,
+    useTheme,
 } from 'react-native-paper';
+import EventForm from './EventForm';
 
-const HeaderList = ({ color, name, handleUpdate }) => {
+const HeaderEvent = ({ color, name, handleUpdate }) => {
+    const [visible, setVisible] = useState(false);
+    const { colors } = useTheme();
+    const showModal = () => setVisible(true);
+    const hideModal = () => setVisible(false);
+
+    const modalStyle = {
+        padding: 20,
+        backgroundColor: colors.background,
+    };
 
     return (
         <View style={[
@@ -21,6 +34,15 @@ const HeaderList = ({ color, name, handleUpdate }) => {
             >
                 {name}
             </Text>
+            <Portal>
+                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={modalStyle}>
+                    <EventForm closeForm={hideModal} />
+                </Modal>
+            </Portal>
+            <IconButton 
+                icon='account-multiple-plus'
+                onPress={showModal}
+            />
             <IconButton 
                 icon='refresh'
                 onPress={() => handleUpdate()}
@@ -29,7 +51,7 @@ const HeaderList = ({ color, name, handleUpdate }) => {
     );
 }
 
-export default HeaderList;
+export default HeaderEvent;
 
 const styles = StyleSheet.create({
 	container: {
@@ -45,5 +67,5 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         fontSize: 20,
         fontWeight: 'bold',
-    }
+    },
 });

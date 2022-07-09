@@ -9,21 +9,21 @@ export default function Settings() {
     const [selectedImage, setSelectedImage] = React.useState(cat);
 
     let openImagePickerAsync = async () => {
-    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (permissionResult.granted === false) {
-      alert("Permission to access camera roll is required!");
-      return;
+      if (permissionResult.granted === false) {
+        alert("Permission to access camera roll is required!");
+        return;
+      }
+
+      let pickerResult = await ImagePicker.launchImageLibraryAsync();
+      
+      if (pickerResult.cancelled === true) {
+        return;
+      }
+
+      setSelectedImage({ localUri: pickerResult.uri });
     }
-
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    
-    if (pickerResult.cancelled === true) {
-      return;
-    }
-
-    setSelectedImage({ localUri: pickerResult.uri });
-  }
 
   let openShareDialogAsync = async () => {
     if (Platform.OS === 'web') {

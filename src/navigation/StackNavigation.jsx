@@ -1,17 +1,17 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import {
-  HOME, CHATSLIST, PROFILE, CHAT, SETTINGS, LOGIN, SIGNUP, WELCOME
-} from '../constants/Routes';
+import ROUTES from '../constants/Routes';
 //Screens
-import Home from '../pages/Home';
+import Main from '../pages/Main';
 import ChatsList from '../pages/ChatList';
+import EventList from '../pages/EventList';
 import Profile from '../pages/Profile';
 import Chat from '../pages/Chat';
-import Settings from '../pages/Settings';
-import LogIn from '../pages/LogIn';
-import SignUp from '../pages/SignUp';
+import EventPartuza from '../pages/EventPartuza';
 import Welcome from '../pages/Welcome';
+import SignUp from '../pages/SignUp';
+import LogIn from '../pages/LogIn';
+import Settings from '../pages/Settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,17 +25,19 @@ export default function StackNavigation() {
     >
       {loggedUser ? (
         <>
-          <Stack.Screen name={HOME} component={Home}/>
-          <Stack.Screen name={PROFILE} component={Profile}/>
-          <Stack.Screen name={CHATSLIST} component={ChatsList}/>
-          <Stack.Screen name={CHAT} component={Chat}/>
-          <Stack.Screen name={SETTINGS} component={Settings}/>
+          <Stack.Screen name={ROUTES.MAIN} component={Main}/>
+          <Stack.Screen name={ROUTES.PAGE.CHATLIST} component={ChatsList}/>
+          <Stack.Screen name={ROUTES.PAGE.EVENTLIST} component={EventList}/>
+          <Stack.Screen name={ROUTES.SUBPAGE.PROFILE} component={Profile}/>
+          <Stack.Screen name={ROUTES.SUBPAGE.CHAT} component={Chat}/>
+          <Stack.Screen name={ROUTES.SUBPAGE.EVENT} component={EventPartuza}/>
+          <Stack.Screen name={ROUTES.SETTINGS} component={Settings}/>
         </>
       ) : (
         <>
-          <Stack.Screen name={WELCOME} component={Welcome} options={{ headerShown: false }} />
-          <Stack.Screen name={LOGIN} component={LogIn} />
-          <Stack.Screen name={SIGNUP} component={SignUp}/>
+          <Stack.Screen name={ROUTES.LOGIN.WELCOME} component={Welcome} options={{ headerShown: false }} />
+          <Stack.Screen name={ROUTES.LOGIN.LOGIN} component={LogIn} />
+          <Stack.Screen name={ROUTES.LOGIN.SIGNUP} component={SignUp}/>
         </>
       )}
     </Stack.Navigator>

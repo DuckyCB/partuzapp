@@ -9,7 +9,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import HeaderChat from '../components/HeaderChat';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
-import COLOR from '../constants/colors';
+import COLOR from '../constants/Colors';
 
 const Chat = ({ route }) => {
 	const { colors } = useTheme();

@@ -22,6 +22,7 @@ const Discover = () => {
             name: 'Partido de futbol',
             category: 'Futbol',
             description: 'Buscamos gente para jugar un futbol 5',
+            matched: true,
             date: '25/07',
             img: 'https://unsplash.it/300/300/?random&__id=123'
         };
@@ -33,6 +34,7 @@ const Discover = () => {
             name: 'Previa',
             category: 'Previa',
             description: 'Sale previa antes de Mona',
+            matched: true,
             date: '16/07',
             img: 'https://unsplash.it/300/300/?random&__id=123'
         };
@@ -41,6 +43,9 @@ const Discover = () => {
 
     const handleLike = () => {
         console.log('like');
+        if (actualEvent.matched) {
+            
+        }
         getNextEvent();
     }
 
@@ -52,32 +57,30 @@ const Discover = () => {
     return (
         <View style={styles.container}>
             {actualEvent ? (
-                <View>
-                    <Card style={styles.card}>
-                        <Card.Cover 
-                            style={styles.image}
-                            source={{ uri: actualEvent.img }}
+                <Card style={styles.card}>
+                    <Card.Cover 
+                        style={styles.image}
+                        source={{ uri: actualEvent.img }}
+                    />
+                    <Card.Content>
+                        <Title>{actualEvent.category}</Title>
+                        <Paragraph>{actualEvent.description}</Paragraph>
+                    </Card.Content>
+                    <Card.Actions style={styles.actions}>
+                        <IconButton 
+                            icon='close-circle'
+                            iconColor='#f44336'
+                            size={30}
+                            onPress={() => handleReject()}
                         />
-                        <Card.Content>
-                            <Title>{actualEvent.category}</Title>
-                            <Paragraph>{actualEvent.description}</Paragraph>
-                        </Card.Content>
-                        <Card.Actions style={styles.actions}>
-                            <IconButton 
-                                icon='close-circle'
-                                iconColor='#f44336'
-                                size={30}
-                                onPress={() => handleReject()}
-                            />
-                            <IconButton 
-                                icon='heart'
-                                iconColor='#8bc34a'
-                                size={30}
-                                onPress={() => handleLike()}
-                            />
-                        </Card.Actions>
-                    </Card>
-                </View>
+                        <IconButton 
+                            icon='heart'
+                            iconColor='#8bc34a'
+                            size={30}
+                            onPress={() => handleLike()}
+                        />
+                    </Card.Actions>
+                </Card>
             ) : (
                 <View>
                     <Text>Loading...</Text>

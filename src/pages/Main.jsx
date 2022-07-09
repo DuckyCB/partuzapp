@@ -2,25 +2,18 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { 
 	StyleSheet,
-	ScrollView,
-	View,
-	Image,
-	Animated,
 } from 'react-native';
 import {
 	BottomNavigation,
 	useTheme,
 } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-	createMaterialTopTabNavigator 
-} from '@react-navigation/material-top-tabs';
 import ChatsList from './ChatList';
 import Discover from './Discover';
 import Profile from './Profile';
+import EventList from './EventList';
 
-export default function Home() {
-	const navigation = useNavigation();
+const Main = () => {
 	const { colors } = useTheme();
 	const [index, setIndex] = useState(1);
 	const [routes] = useState([
@@ -44,13 +37,12 @@ export default function Home() {
 			color: '#00796b',
 		},
 		{
-		key: 'purchased',
-		title: 'Purchased',
-		icon: 'shopping-music',
+		key: 'events',
+		title: 'Events',
+		icon: 'calendar',
 		color: '#2962ff',
 		},
 	]);
-	const Tab = createMaterialTopTabNavigator();
 
 	return (
 		<SafeAreaView style={[
@@ -58,11 +50,6 @@ export default function Home() {
 				{ backgroundColor: colors.background }
 			]}
 		>
-			{/* <Tab.Navigator>
-				<Tab.Screen name="Chats" component={ChatsList} />
-				<Tab.Screen name="Discover" component={Discover} />
-				<Tab.Screen name="Profile" component={Profile} />
-			</Tab.Navigator> */}
 			<BottomNavigation 
 				navigationState={{ index, routes }}
 				onIndexChange={index => setIndex(index)}
@@ -70,13 +57,15 @@ export default function Home() {
 					chats: ChatsList,
 					discover: Discover,
 					profile: Profile,
-					purchased: Discover,
+					events: EventList,
 				  })}
 				  sceneAnimationEnabled={false}
 			/>
 		</SafeAreaView>
 	);
 }
+
+export default Main;
 
 const styles = StyleSheet.create({
   container: {
