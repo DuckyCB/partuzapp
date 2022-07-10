@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     View,
     ScrollView,
@@ -13,6 +13,9 @@ import {
     RadioButton,
     TouchableRipple,
 } from 'react-native-paper';
+import axiosInstance from '../../utils/networking';
+import API from '../../constants/API';
+import { LoginContext } from '../../navigation/StackNavigation';
 
 const CategoryDialog = ({ visible, close, handleCategorySelect }) => {
     const [selection, setSelection] = useState('');
@@ -65,12 +68,16 @@ const CategoryDialog = ({ visible, close, handleCategorySelect }) => {
     );
 }
 
-const EventForm = ({ closeForm }) => {
+const EventForm = ({ closeForm, title, create }) => {
+    // const { user } = useContext(LoginContext);
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [categorySelectVisible, setCategorySelectVisible] = useState(false);
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
+    const [location, setLocation] = useState('');
+    const [picture, setPicture] = useState('');
+    const [participants, setParticipants] = useState([]);
     const [error, setError] = useState('');
 
     const closeCategorySelect = () => {
@@ -95,38 +102,69 @@ const EventForm = ({ closeForm }) => {
         } else if (date.length === 0) {
             setError('Date cannot be empty');
         } else {
-            // TODO: conectar con la base de datos
-            console.log('event saved');
+            if (create) {
+                axiosInstance
+                    .post(API.EVENT.POST_CREATE, {
+                        name,
+                        creator: user,
+                        participants,
+                        description,
+                        date,
+                        location,
+                        categoria: category,
+                        picture,
+                    })
+                    .then(() => {
+                        closeForm();
+                    })
+                    .catch(() => {
+                        setError('Error saving info');
+                    });
+            } else {
+                
+            }
             closeForm();
         }
     }
 
     return (
         <View>
-            <Text style={styles.title}>Create event</Text>
-            <TextInput label='Name'
-                  value={name}
-                  onChangeText={newName => setName(newName)}
-                  style={styles.input}
-            />
-            <View style={styles.picker}>
-                <View style={styles.selection}>
-                    <Text style={styles.categoryText}>{category?.name}</Text>
+            <Text style={styles.title}>{title}</Text>
+            <ScrollView>
+                <TextInput label='Name'
+                    value={name}
+                    onChangeText={newName => setName(newName)}
+                    style={styles.input}
+                />
+                <View style={styles.picker}>
+                    <View style={styles.selection}>
+                        <Text style={styles.categoryText}>{category?.name}</Text>
+                    </View>
+                    <Button onPress={() => setCategorySelectVisible(true)} >
+                        Select Category
+                    </Button>
                 </View>
-                <Button onPress={() => setCategorySelectVisible(true)} >
-                    Select Category
-                </Button>
-            </View>
-            <TextInput label='Description'
-                  value={description}
-                  onChangeText={newDescription => setDescription(newDescription)}
-                  style={styles.input}
-            />
-            <TextInput label='Date'
-                  value={date}
-                  onChangeText={newDate => setDate(newDate)}
-                  style={styles.input}
-            />
+                <TextInput label='Description'
+                    value={description}
+                    onChangeText={newDescription => setDescription(newDescription)}
+                    style={styles.input}
+                />
+                <TextInput label='Date'
+                    value={date}
+                    onChangeText={newDate => setDate(newDate)}
+                    style={styles.input}
+                />
+                <TextInput label='Location'
+                    value={location}
+                    onChangeText={newLocation => setLocation(newLocation)}
+                    style={styles.input}
+                />
+                <TextInput label='Picture'
+                    value={picture}
+                    onChangeText={newPicture => setPicture(newPicture)}
+                    style={styles.input}
+                />
+            </ScrollView>
             <Button mode='contained' onPress={handleSave}>Save</Button>
             <Text style={styles.error}>{error}</Text>
             <CategoryDialog

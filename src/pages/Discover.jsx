@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
     View,
     Image,
@@ -9,13 +9,16 @@ import {
     Title,
     Paragraph,
     IconButton,
+    Button,
     Card,
 } from 'react-native-paper';
-import { FlipInEasyX } from 'react-native-reanimated';
 import fut5Img from '../../assets/images/fut5.jpg';
+import { LoginContext } from '../navigation/StackNavigation';
+import { logoutLocalUser } from '../utils/localUser';
 
 const Discover = () => {
     const [actualEvent, setActualEvent] = useState();
+    const { setUser } = useContext(LoginContext);
 
     useEffect(() => {
         const eventHardcoded = {
@@ -56,6 +59,7 @@ const Discover = () => {
 
     return (
         <View style={styles.container}>
+            <Button mode='contained' onPress={() => {logoutLocalUser(); setUser(null)}}>Logout</Button>
             {actualEvent ? (
                 <Card style={styles.card}>
                     <Card.Cover 

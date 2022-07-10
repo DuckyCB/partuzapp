@@ -11,7 +11,7 @@ import {
     Text,
     useTheme,
 } from 'react-native-paper';
-import HeaderList from '../components/HeaderList'
+import HeaderList from '../components/HeaderList';
 
 const ChatsList = () => {
     const { colors } = useTheme();
