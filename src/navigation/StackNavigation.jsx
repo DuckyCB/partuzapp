@@ -21,13 +21,17 @@ export const LoginContext = createContext();
 export default function StackNavigation() {
   const [user, setUser] = useState(loggedUser());
 
+  useEffect(() => {
+    console.log('user ', user);
+  }, [user]);
+
   return (
     <LoginContext.Provider value={{ user, setUser }}>
       <Stack.Navigator screenOptions={{
           headerShown: false
         }}
       >
-        {(loggedUser !== null) ? (
+        {(user !== null) ? (
           <>
             <Stack.Screen name={ROUTES.MAIN} component={Main}/>
             <Stack.Screen name={ROUTES.PAGE.CHATLIST} component={ChatsList}/>

@@ -59,7 +59,7 @@ const Discover = () => {
 
     return (
         <View style={styles.container}>
-            <Button mode='contained' onPress={() => {logoutLocalUser(); setUser(null)}}>Logout</Button>
+            <Button mode='contained' onPress={() => {setUser(null)}}>Logout</Button>
             {actualEvent ? (
                 <Card style={styles.card}>
                     <Card.Cover 
