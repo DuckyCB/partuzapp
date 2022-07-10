@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/images/partuzappLogo.png';
 import axiosInstance from '../utils/networking';
 import { LoginContext } from '../navigation/StackNavigation';
 import { loginLocalUser } from '../utils/localUser';
@@ -64,9 +64,10 @@ const LogIn = () => {
 
 const styles = StyleSheet.create({
   container: {
-	flex: 1,
-	alignItems: 'center',
-	padding: 20,
+    flex: 1,
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor:'white',
   },
   image: {
 	width: 300,
@@ -74,16 +75,17 @@ const styles = StyleSheet.create({
 	alignContent: 'center',
   },
   input: {
-	marginHorizontal: '25%',
-	marginVertical: 10,
-	width: '50%',
+    marginHorizontal: '25%',
+    marginVertical: 10,
+    width: '60%',
+    height:'15%'
   },
   button: {
-	marginHorizontal: '25%',
-	marginVertical: 10,
+    marginHorizontal: '25%',
+    marginVertical: 10,
   },
   error: {
-	fontSize: 20,
+	fontSize: 15,
 	color: '#F00'
   }
 });
