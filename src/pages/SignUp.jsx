@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { View, Image, StyleSheet, ScrollView } from 'react-native'
 import { TextInput, Button, Text, useTheme } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Logo from '../../assets/images/appLogo.png'
 import HeaderBack from '../components/HeaderBack'
+import { loginLocalUser } from '../utils/localUser'
 import API from '../constants/API'
+import { LoginContext } from '../navigation/StackNavigation'
+import axiosInstance from '../utils/networking'
 
 const SignUp = () => {
   const [mail, setMail] = useState('')
@@ -15,6 +18,7 @@ const SignUp = () => {
   const [description, setDescription] = useState('')
   const [error, setError] = useState('')
   const { colors } = useTheme()
+  const { setUser } = useContext(LoginContext)
 
   const handleSignUp = () => {
     if (mail.length === 0) {
@@ -28,20 +32,25 @@ const SignUp = () => {
     } else if (birthDate.length === 0) {
       setError('Birth date cannot be empty')
     } else if (description.length === 0) {
-      setError('Description date cannot be empty')
+      setError('Description cannot be empty')
     } else {
       axiosInstance
         .post(API.USER.POST_CREATE, {
           mail,
+          name,
           password,
+          profilePicture: '',
+          lastName,
+          birthDate,
+          description
         })
         .then(() => {
+          console.log('login');
           loginLocalUser(mail)
           setUser(mail)
         })
         .catch(() => {
           setError('Error')
-          setPassword('')
         })
     }
   }
@@ -76,6 +85,7 @@ const SignUp = () => {
           />
           <TextInput
             label="password"
+            secureTextEntry={true}
             value={password}
             onChangeText={(password) => setPassword(password)}
             style={styles.input}
@@ -93,7 +103,7 @@ const SignUp = () => {
             style={styles.input}
           />
           <Button mode="contained" onPress={handleSignUp} style={styles.button}>
-            LogIn
+            Sign up
           </Button>
           <Text style={styles.error}>{error}</Text>
         </View>

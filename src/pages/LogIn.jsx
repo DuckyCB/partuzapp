@@ -6,16 +6,14 @@ import axiosInstance from '../utils/networking'
 import { LoginContext } from '../navigation/StackNavigation'
 import { loginLocalUser } from '../utils/localUser'
 import API from '../constants/API'
-import { useNavigation } from '@react-navigation/core'
 import HeaderBack from '../components/HeaderBack'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const LogIn = () => {
-  const [mail, setMail] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [mail, setMail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const { setUser } = useContext(LoginContext)
-  const navigation = useNavigation()
   const { colors } = useTheme()
 
   const handleLogin = () => {
@@ -56,6 +54,7 @@ const LogIn = () => {
         />
         <TextInput
           label="password"
+          secureTextEntry={true}
           value={password}
           onChangeText={(password) => {
             setPassword(password)
