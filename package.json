@@ -6,10 +6,12 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "prettier": "prettier --write \"src/**/*.jsx\""
   },
   "dependencies": {
     "@expo/webpack-config": "~0.16.24",
+    "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/core": "^6.2.1",
     "@react-navigation/native": "^6.0.10",
@@ -32,11 +34,11 @@
     "react-native-screens": "~3.11.1",
     "react-native-tab-view": "^3.1.1",
     "react-native-web": "0.17.7",
-    "webpack-dev-server": "~3.11.0",
-    "@react-native-async-storage/async-storage": "~1.17.3"
+    "webpack-dev-server": "~3.11.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "prettier": "^2.7.1"
   },
   "private": true
 }
