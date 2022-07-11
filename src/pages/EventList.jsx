@@ -15,44 +15,38 @@ const EventList = () => {
   const { user } = useContext(LoginContext)
 
   useEffect(() => {
-    // axiosInstance
-    //     .get(API.EVENT.GET_EVENTS_BY_CAT)
-    //     .then((res) => {
-    //         setEventList(res.data);
-    //     })
-    //     .catch(() => {
-    //         console.log('error getting events');
-    //     });
-    setEventList([
-      {
-        _id: 1,
-        name: 'Previa',
-        category: 'previa',
-        description: 'Sale previa antes de Mona',
-        members: 3,
-        date: '16/07',
-        img: 'https://unsplash.it/300/300/?random&__id=123',
-      },
-      {
-        _id: 2,
-        name: 'Partido de futbol',
-        category: 'futbol',
-        description: 'Buscamos gente para jugar un futbol 5',
-        members: 5,
-        date: '25/07',
-        img: 'https://unsplash.it/300/300/?random&__id=123',
-      },
-    ])
+    handleListUpdate()
+    // setEventList([
+    //   {
+    //     _id: 1,
+    //     name: 'Previa',
+    //     category: 'previa',
+    //     description: 'Sale previa antes de Mona',
+    //     members: 3,
+    //     date: '16/07',
+    //     img: 'https://unsplash.it/300/300/?random&__id=123',
+    //   },
+    //   {
+    //     _id: 2,
+    //     name: 'Partido de futbol',
+    //     category: 'futbol',
+    //     description: 'Buscamos gente para jugar un futbol 5',
+    //     members: 5,
+    //     date: '25/07',
+    //     img: 'https://unsplash.it/300/300/?random&__id=123',
+    //   },
+    // ])
   }, [])
 
   const handleListUpdate = () => {
     axiosInstance
-      .get(API.EVENT.GET_EVENTS_BY_CAT)
+      .get(`${API.EVENT.GET_EVENTS_BY_CAT}MisEventos/public/${user}`)
       .then((res) => {
+        console.log(res.data);
         setEventList(res.data)
       })
       .catch(() => {
-        console.log('error getting events')
+        console.log('error requesting events');
       })
   }
 
@@ -73,12 +67,12 @@ const EventList = () => {
                 <List.Item
                   title={event.name}
                   key={event._id}
-                  description={`Members: ${event.members}`}
+                  description={event.description}
                   right={() => <Text style={styles.time}>{event.date}</Text>}
                   left={(props) => (
                     <List.Icon
                       {...props}
-                      icon={getIconFromCategory(event.category)}
+                      icon={getIconFromCategory(event.categoria)}
                     />
                   )}
                   onPress={() => {

@@ -31,7 +31,7 @@ const Profile = () => {
       })
   }
 
-  useEffect(() => {
+  const getProfile = () => {
     axiosInstance
       .get(`${API.USER.GET_USER}${user}`)
       .then((res) => {
@@ -42,9 +42,14 @@ const Profile = () => {
         setProfilePicture(res.data.profilePicture)
         setLoaded(true)
       })
-      .catch(() => {
-        log('error requesting user')
+      .catch((err) => {
+        console.log('error ', err)
+        setLoaded(true)
       })
+  }
+
+  useEffect(() => {
+    getProfile()
   }, [])
 
   return (

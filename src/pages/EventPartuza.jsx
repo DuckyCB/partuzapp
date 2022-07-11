@@ -12,33 +12,43 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import HeaderEventPartuza from '../components/events/HeaderEventPartuza'
 import axiosInstance from '../utils/networking'
 import API from '../constants/API'
+import { loggedUser } from '../utils/localUser'
 
 const EventPartuza = ({ route }) => {
   const { event } = route.params
   const { colors } = useTheme()
   const [actualPerson, setActualPerson] = useState()
+  const [eventList, setEventList] = useState([])
+  const [user, setUser] = useState()
 
   useEffect(() => {
+    loggedUser().then((res) => setUser(res))
     handlePersonUpdate()
   }, [])
 
+  useEffect(() => {
+    handlePersonUpdate()
+  }, [user])
+
   const handlePersonUpdate = () => {
-    // axiosInstance
-    //     .get(API)
-    //     .then(() => {
-    //         console.log(funciono);
-    //     })
-    //     .catch(() => {
-    //         console.log('error obteniendo personas');
-    //     })
-    setActualPerson({
-      name: 'Previa',
-      category: 'Previa',
-      description: 'Sale previa antes de Mona',
-      matched: true,
-      date: '16/07',
-      img: 'https://unsplash.it/300/300/?random&__id=123',
-    })
+    axiosInstance
+      .get(`${API.EVENT.GET_EVENTS_BY_CAT}MisEventos/private/${user}`)
+      .then((res) => {
+        console.log(res.data)
+        setEventList(res.data)
+        setActualPerson(res.data[0])
+      })
+      .catch(() => {
+        console.log('error requesting events');
+      })
+    // setActualPerson({
+    //   name: 'Previa',
+    //   category: 'Previa',
+    //   description: 'Sale previa antes de Mona',
+    //   matched: true,
+    //   date: '16/07',
+    //   img: 'https://unsplash.it/300/300/?random&__id=123',
+    // })
   }
 
   return (

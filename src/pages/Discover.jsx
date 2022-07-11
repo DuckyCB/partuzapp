@@ -1,24 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Text, Title, Paragraph, IconButton, Card } from 'react-native-paper'
+import axiosInstance from '../utils/networking'
+import API from '../constants/API'
+import { LoginContext } from '../navigation/StackNavigation'
+
 
 const Discover = () => {
   const [actualEvent, setActualEvent] = useState()
+  const [eventList, setEventList] = useState([])
+  const { user } = useContext(LoginContext)
 
   useEffect(() => {
-    const eventHardcoded = {
-      name: 'Partido de futbol',
-      category: 'Futbol',
-      description: 'Buscamos gente para jugar un futbol 5',
-      matched: true,
-      date: '25/07',
-      img: 'https://unsplash.it/300/300/?random&__id=123',
-    }
-    setActualEvent(eventHardcoded)
+    axiosInstance
+      .get(`${API.EVENT.GET_EVENTS_BY_CAT}Todos/public/${user}`)
+      .then((res) => {
+        console.log(res.data);
+        setEventList(res.data)
+        setActualEvent(res.data[0])
+      })
+      .catch(() => {
+        console.log('error requesting events');
+      })
+    // const eventHardcoded = {
+    //   _id: 12341234,
+    //   name: 'Partido de futbol',
+    //   category: 'Futbol',
+    //   description: 'Buscamos gente para jugar un futbol 5',
+    //   matched: true,
+    //   date: '25/07',
+    //   img: 'https://unsplash.it/300/300/?random&__id=123',
+    // }
+    // setActualEvent(eventHardcoded)
   }, [])
 
   const getNextEvent = () => {
     const eventHardcoded = {
+      _id: 432114312,
       name: 'Previa',
       category: 'Previa',
       description: 'Sale previa antes de Mona',
@@ -31,14 +49,32 @@ const Discover = () => {
 
   const handleLike = () => {
     console.log('like')
-    if (actualEvent.matched) {
-    }
-    getNextEvent()
+    axiosInstance
+      .post(API.EVENT.POST_LIKE, {
+        _id: actualEvent._id,
+        mail: user
+      })
+      .then(() => {
+        getNextEvent()
+      })
+      .catch(() => {
+        getNextEvent()
+      })
   }
 
   const handleReject = () => {
     console.log('reject')
-    getNextEvent()
+    axiosInstance
+      .post(API.EVENT.POST_REJECT, {
+        _id: actualEvent._id,
+        mail: user
+      })
+      .then(() => {
+        getNextEvent()
+      })
+      .catch(() => {
+        getNextEvent()
+      })
   }
 
   return (

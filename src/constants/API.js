@@ -10,6 +10,8 @@ const API = {
     GET_EVENTS_BY_CAT: "/getEventos/",
     POST_UPDATE: "/actualizarEvento",
     POST_ACCEPT: "/aceptarEnEvento",
+    POST_REJECT: "/rechazarEnEvento",
+    POST_LIKE: "/darLikeEvento"
   },
 };
 

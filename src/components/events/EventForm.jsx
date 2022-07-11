@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, ScrollView, StyleSheet } from 'react-native'
 import {
   Text,
@@ -11,7 +11,8 @@ import {
 } from 'react-native-paper'
 import axiosInstance from '../../utils/networking'
 import API from '../../constants/API'
-import { LoginContext } from '../../navigation/StackNavigation'
+import { loggedUser } from "../../utils/localUser";
+
 
 const CategoryDialog = ({ visible, close, handleCategorySelect }) => {
   const [selection, setSelection] = useState('')
@@ -25,7 +26,7 @@ const CategoryDialog = ({ visible, close, handleCategorySelect }) => {
   ]
 
   const handleOk = () => {
-    handleCategorySelect(selection)
+    handleCategorySelect(selection.value)
     close()
   }
 
@@ -69,7 +70,7 @@ const CategoryDialog = ({ visible, close, handleCategorySelect }) => {
 }
 
 const EventForm = ({ closeForm, title, create }) => {
-  // const { user } = useContext(LoginContext);
+  const [creator, setCreator] = useState('');
   const [name, setName] = useState('')
   const [category, setCategory] = useState('')
   const [categorySelectVisible, setCategorySelectVisible] = useState(false)
@@ -89,6 +90,10 @@ const EventForm = ({ closeForm, title, create }) => {
   }
 
   useEffect(() => {
+    loggedUser().then((res) => setCreator(res))
+  }, [])
+
+  useEffect(() => {
     setError('')
   }, [name, category, description, date])
 
@@ -101,28 +106,30 @@ const EventForm = ({ closeForm, title, create }) => {
       setError('Description cannot be empty')
     } else if (date.length === 0) {
       setError('Date cannot be empty')
+    } else if (location.length === 0) {
+      setError('Location cannot be empty')
+    } else if (creator.length === 0) {
+      setError('Error getting local user')
     } else {
-      if (create) {
-        axiosInstance
-          .post(API.EVENT.POST_CREATE, {
-            name,
-            creator: user,
-            participants,
-            description,
-            date,
-            location,
-            categoria: category,
-            picture,
-          })
-          .then(() => {
-            closeForm()
-          })
-          .catch(() => {
-            setError('Error saving info')
-          })
-      } else {
-      }
-      closeForm()
+      const api_url = (create) ? API.EVENT.POST_CREATE : API.EVENT.POST_UPDATE
+      axiosInstance
+        .post(api_url, {
+          name,
+          creator,
+          participants,
+          description,
+          date,
+          location,
+          categoria: category,
+          picture,
+        })
+        .then(() => {
+          console.log('created');
+          closeForm()
+        })
+        .catch(() => {
+          setError('Error saving info')
+        })
     }
   }
 
