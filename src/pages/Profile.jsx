@@ -1,18 +1,39 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, SafeAreaView, StyleSheet } from 'react-native'
-import { TextInput, Button, Avatar, useTheme } from 'react-native-paper'
+import { TextInput, Button, Avatar, Text } from 'react-native-paper'
+import API from '../constants/API'
 import { LoginContext } from '../navigation/StackNavigation'
 import { logoutLocalUser } from '../utils/localUser'
+import axiosInstance from '../utils/networking'
 
 const Profile = () => {
-  const [name, setUsername] = React.useState('Sherman')
-  const [age, setAge] = React.useState('21')
-  const [description, setDescription] = React.useState('Hola soy Germán')
-  const { setUser } = useContext(LoginContext)
+  const [loaded, setLoaded] = useState(false);
+  const [name, setName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [birthDate, setBirthDate] = useState('')
+  const [description, setDescription] = useState('')
+  const [profilePicture, setProfilePicture] = useState('')
+  const { user, setUser } = useContext(LoginContext)
 
   const handleSaveProfile = () => {
     console.log('save profile')
   }
+
+  useEffect(() => {
+    axiosInstance
+      .get(`${API.USER.GET_USER}${user}`)
+      .then((res) => {
+        setName(res.data.name)
+        setBirthDate(res.data.birthDate)
+        setLastName(res.data.lastName)
+        setDescription(res.data.description)
+        setProfilePicture(res.data.profilePicture)
+        setLoaded(true)
+      })
+      .catch(() => {
+        log('error requesting user')
+      })
+  }, [])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,33 +46,45 @@ const Profile = () => {
       >
         Logout
       </Button>
-      <Avatar.Image
-        size={120}
-        source={require('../../assets/images/germen.jpg')}
-      />
-      <View>
-        <TextInput
-          label="Name"
-          value={name}
-          onChangeText={(name) => setUsername(name)}
-          style={styles.input}
-        />
-        <TextInput
-          label="Age"
-          value={age}
-          onChangeText={(age) => setAge(age)}
-          style={styles.input}
-        />
-        <TextInput
-          label="Description"
-          value={description}
-          onChangeText={(newDescription) => setDescription(newDescription)}
-          style={styles.description}
-        />
-        <Button mode="contained" onPress={handleSaveProfile}>
-          Save
-        </Button>
-      </View>
+      {loaded ? (
+        <>
+          <Avatar.Image
+            size={120}
+            source={profilePicture}
+          />
+          <View>
+            <TextInput
+              label="Name"
+              value={name}
+              onChangeText={(name) => setUsername(name)}
+              style={styles.input}
+            />
+            <TextInput
+              label="Lastname"
+              value={lastName}
+              onChangeText={(lastName) => setLastName(lastName)}
+              style={styles.input}
+            />
+            <TextInput
+              label="Birth date"
+              value={birthDate}
+              onChangeText={(birthDate) => setBirthDate(birthDate)}
+              style={styles.description}
+            />
+            <TextInput
+              label="Description"
+              value={description}
+              onChangeText={(newDescription) => setDescription(newDescription)}
+              style={styles.description}
+            />
+            <Button mode="contained" onPress={handleSaveProfile}>
+              Save
+            </Button>
+          </View>
+        </>
+      ) : (
+        <Text>Loading...</Text>
+      )}
     </SafeAreaView>
   )
 }
