@@ -1,7 +1,8 @@
-import React from "react";
-import { View, Image, StyleSheet } from "react-native";
-import { TextInput, Button, Text } from "react-native-paper";
-import Logo from "../../assets/images/logo.png";
+import React from 'react';
+import { View, Image, StyleSheet } from 'react-native';
+import { TextInput, Button } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import Logo from '../../assets/images/partuzappLogo.png';
 import API from '../constants/API';
 
 const SignUp = () => {
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 20,
+    backgroundColor:'white',
   },
   image: {
     width: 200,
@@ -104,7 +106,8 @@ const styles = StyleSheet.create({
   input: {
     marginHorizontal: "25%",
     marginVertical: 10,
-    width: "50%",
+    width: '60%',
+    height:'15%',
   },
   button: {
     marginHorizontal: "25%",
