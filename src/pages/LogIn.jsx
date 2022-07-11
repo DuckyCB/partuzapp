@@ -41,7 +41,7 @@ const LogIn = () => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeContainer}>
       <HeaderBack color="#9e6ce3" name="LogIn" />
       <View style={[styles.container, { backgroundColor: colors.background }]}>
         <Image source={Logo} resizeMode="contain" style={styles.image} />
@@ -73,6 +73,9 @@ const LogIn = () => {
 }
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    height: '100%',
+  },
   container: {
     flex: 1,
     alignItems: 'center',
