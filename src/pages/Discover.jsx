@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { View, Image, StyleSheet } from 'react-native'
-import {
-  Text,
-  Title,
-  Paragraph,
-  IconButton,
-  Button,
-  Card,
-} from 'react-native-paper'
-import fut5Img from '../../assets/images/fut5.jpg'
-import { LoginContext } from '../navigation/StackNavigation'
-import { logoutLocalUser } from '../utils/localUser'
+import { View, StyleSheet } from 'react-native'
+import { Text, Title, Paragraph, IconButton, Card } from 'react-native-paper'
 
 const Discover = () => {
   const [actualEvent, setActualEvent] = useState()

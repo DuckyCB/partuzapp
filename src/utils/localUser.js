@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const loggedUser = async () => {
   try {
     const value = await AsyncStorage.getItem("user");
-    return (value === undefined) ? null : value;
+    return (value === undefined || value === 'null') ? null : value;
   } catch (e) {
     console.log("error reading value");
     return null;

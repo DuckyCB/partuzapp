@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { Text, useTheme } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import HeaderChat from '../components/HeaderChat'
+import HeaderBack from '../components/HeaderBack'
 import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 import COLOR from '../constants/Colors'
 
@@ -65,7 +65,7 @@ const Chat = ({ route }) => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.background }]}
     >
-      <HeaderChat color="#6200ee" name={chatWith?.name} />
+      <HeaderBack color="#6200ee" name={chatWith?.name} />
       <GiftedChat
         messages={messages}
         onSend={(newMessage) => handleSend(newMessage)}

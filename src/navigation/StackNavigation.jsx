@@ -19,7 +19,11 @@ const Stack = createNativeStackNavigator()
 export const LoginContext = createContext()
 
 export default function StackNavigation() {
-  const [user, setUser] = useState(loggedUser())
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    loggedUser().then((res) => setUser(res))
+  }, [])
 
   return (
     <LoginContext.Provider value={{ user, setUser }}>
@@ -28,7 +32,7 @@ export default function StackNavigation() {
           headerShown: false,
         }}
       >
-        {user !== null ? (
+        {user ? (
           <>
             <Stack.Screen name={ROUTES.MAIN} component={Main} />
             <Stack.Screen name={ROUTES.PAGE.CHATLIST} component={ChatsList} />

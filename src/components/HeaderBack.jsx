@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/core'
 import { View, StyleSheet } from 'react-native'
 import { Text, IconButton } from 'react-native-paper'
 
-const HeaderChat = ({ color, name }) => {
+const HeaderBack = ({ color, name }) => {
   const navigation = useNavigation()
 
   return (
@@ -16,7 +16,7 @@ const HeaderChat = ({ color, name }) => {
   )
 }
 
-export default HeaderChat
+export default HeaderBack
 
 const styles = StyleSheet.create({
   container: {

@@ -82,9 +82,7 @@ const EventList = () => {
                     />
                   )}
                   onPress={() => {
-                    navigation.navigate('Event', {
-                      event: event,
-                    })
+                    navigation.navigate('Event', { event })
                   }}
                 />
               )
