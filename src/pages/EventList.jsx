@@ -1,18 +1,18 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useNavigation } from "@react-navigation/core";
-import { View, SafeAreaView, ScrollView, StyleSheet } from "react-native";
-import { List, Text, useTheme } from "react-native-paper";
-import HeaderEvent from "../components/events/HeaderEvent";
-import getIconFromCategory from "../constants/IconType";
-import { LoginContext } from "../navigation/StackNavigation";
-import axiosInstance from "../utils/networking";
-import API from "../constants/API";
+import React, { useEffect, useState, useContext } from 'react'
+import { useNavigation } from '@react-navigation/core'
+import { View, SafeAreaView, ScrollView, StyleSheet } from 'react-native'
+import { List, Text, useTheme } from 'react-native-paper'
+import HeaderEvent from '../components/events/HeaderEvent'
+import getIconFromCategory from '../constants/IconType'
+import { LoginContext } from '../navigation/StackNavigation'
+import axiosInstance from '../utils/networking'
+import API from '../constants/API'
 
 const EventList = () => {
-  const { colors } = useTheme();
-  const [eventList, setEventList] = useState([]);
-  const navigation = useNavigation();
-  const { user } = useContext(LoginContext);
+  const { colors } = useTheme()
+  const [eventList, setEventList] = useState([])
+  const navigation = useNavigation()
+  const { user } = useContext(LoginContext)
 
   useEffect(() => {
     // axiosInstance
@@ -26,35 +26,35 @@ const EventList = () => {
     setEventList([
       {
         _id: 1,
-        name: "Previa",
-        category: "previa",
-        description: "Sale previa antes de Mona",
+        name: 'Previa',
+        category: 'previa',
+        description: 'Sale previa antes de Mona',
         members: 3,
-        date: "16/07",
-        img: "https://unsplash.it/300/300/?random&__id=123",
+        date: '16/07',
+        img: 'https://unsplash.it/300/300/?random&__id=123',
       },
       {
         _id: 2,
-        name: "Partido de futbol",
-        category: "futbol",
-        description: "Buscamos gente para jugar un futbol 5",
+        name: 'Partido de futbol',
+        category: 'futbol',
+        description: 'Buscamos gente para jugar un futbol 5',
         members: 5,
-        date: "25/07",
-        img: "https://unsplash.it/300/300/?random&__id=123",
+        date: '25/07',
+        img: 'https://unsplash.it/300/300/?random&__id=123',
       },
-    ]);
-  }, []);
+    ])
+  }, [])
 
   const handleListUpdate = () => {
     axiosInstance
       .get(API.EVENT.GET_EVENTS_BY_CAT)
       .then((res) => {
-        setEventList(res.data);
+        setEventList(res.data)
       })
       .catch(() => {
-        console.log("error getting events");
-      });
-  };
+        console.log('error getting events')
+      })
+  }
 
   return (
     <SafeAreaView
@@ -82,12 +82,12 @@ const EventList = () => {
                     />
                   )}
                   onPress={() => {
-                    navigation.navigate("Event", {
+                    navigation.navigate('Event', {
                       event: event,
-                    });
+                    })
                   }}
                 />
-              );
+              )
             })}
           </List.Section>
         </ScrollView>
@@ -95,16 +95,16 @@ const EventList = () => {
         <Text variant="displaySmall">No events!</Text>
       )}
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default EventList;
+export default EventList
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    height: '100%',
   },
   time: {
     marginTop: 8,
   },
-});
+})

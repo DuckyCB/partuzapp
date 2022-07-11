@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
+import React, { useState, useEffect, useContext } from 'react'
+import { View, ScrollView, StyleSheet } from 'react-native'
 import {
   Text,
   Subheading,
@@ -8,26 +8,26 @@ import {
   Dialog,
   RadioButton,
   TouchableRipple,
-} from "react-native-paper";
-import axiosInstance from "../../utils/networking";
-import API from "../../constants/API";
-import { LoginContext } from "../../navigation/StackNavigation";
+} from 'react-native-paper'
+import axiosInstance from '../../utils/networking'
+import API from '../../constants/API'
+import { LoginContext } from '../../navigation/StackNavigation'
 
 const CategoryDialog = ({ visible, close, handleCategorySelect }) => {
-  const [selection, setSelection] = useState("");
+  const [selection, setSelection] = useState('')
 
   const categories = [
-    { name: "Previa", value: "previa" },
-    { name: "Fútbol", value: "futbol" },
-    { name: "Volleyball", value: "volleyball" },
-    { name: "Fiesta", value: "fiesta" },
-    { name: "Estudio", value: "estudio" },
-  ];
+    { name: 'Previa', value: 'previa' },
+    { name: 'Fútbol', value: 'futbol' },
+    { name: 'Volleyball', value: 'volleyball' },
+    { name: 'Fiesta', value: 'fiesta' },
+    { name: 'Estudio', value: 'estudio' },
+  ]
 
   const handleOk = () => {
-    handleCategorySelect(selection);
-    close();
-  };
+    handleCategorySelect(selection)
+    close()
+  }
 
   return (
     <Dialog onDismiss={close} visible={visible}>
@@ -47,15 +47,15 @@ const CategoryDialog = ({ visible, close, handleCategorySelect }) => {
                         value={category.value}
                         status={
                           selection.value === `${category.value}`
-                            ? "checked"
-                            : "unchecked"
+                            ? 'checked'
+                            : 'unchecked'
                         }
                       />
                     </View>
                     <Subheading style={styles.text}>{category.name}</Subheading>
                   </View>
                 </TouchableRipple>
-              );
+              )
             })}
           </View>
         </ScrollView>
@@ -65,42 +65,42 @@ const CategoryDialog = ({ visible, close, handleCategorySelect }) => {
         <Button onPress={handleOk}>Ok</Button>
       </Dialog.Actions>
     </Dialog>
-  );
-};
+  )
+}
 
 const EventForm = ({ closeForm, title, create }) => {
   // const { user } = useContext(LoginContext);
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [categorySelectVisible, setCategorySelectVisible] = useState(false);
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [picture, setPicture] = useState("");
-  const [participants, setParticipants] = useState([]);
-  const [error, setError] = useState("");
+  const [name, setName] = useState('')
+  const [category, setCategory] = useState('')
+  const [categorySelectVisible, setCategorySelectVisible] = useState(false)
+  const [description, setDescription] = useState('')
+  const [date, setDate] = useState('')
+  const [location, setLocation] = useState('')
+  const [picture, setPicture] = useState('')
+  const [participants, setParticipants] = useState([])
+  const [error, setError] = useState('')
 
   const closeCategorySelect = () => {
-    setCategorySelectVisible(false);
-  };
+    setCategorySelectVisible(false)
+  }
 
   const handleCategorySelect = (selection) => {
-    setCategory(selection);
-  };
+    setCategory(selection)
+  }
 
   useEffect(() => {
-    setError("");
-  }, [name, category, description, date]);
+    setError('')
+  }, [name, category, description, date])
 
   const handleSave = () => {
     if (name.length === 0) {
-      setError("Name cannot be empty");
+      setError('Name cannot be empty')
     } else if (category.length === 0) {
-      setError("Category cannot be empty");
+      setError('Category cannot be empty')
     } else if (description.length === 0) {
-      setError("Description cannot be empty");
+      setError('Description cannot be empty')
     } else if (date.length === 0) {
-      setError("Date cannot be empty");
+      setError('Date cannot be empty')
     } else {
       if (create) {
         axiosInstance
@@ -115,16 +115,16 @@ const EventForm = ({ closeForm, title, create }) => {
             picture,
           })
           .then(() => {
-            closeForm();
+            closeForm()
           })
           .catch(() => {
-            setError("Error saving info");
-          });
+            setError('Error saving info')
+          })
       } else {
       }
-      closeForm();
+      closeForm()
     }
-  };
+  }
 
   return (
     <View>
@@ -179,35 +179,35 @@ const EventForm = ({ closeForm, title, create }) => {
         handleCategorySelect={handleCategorySelect}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   input: {
     marginVertical: 10,
-    width: "100%",
+    width: '100%',
   },
   picker: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   selection: {
-    borderColor: "#FFF",
+    borderColor: '#FFF',
   },
   categoryText: {
     fontSize: 20,
   },
   title: {
     fontSize: 25,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   row: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 8,
   },
@@ -216,8 +216,8 @@ const styles = StyleSheet.create({
   },
   error: {
     fontSize: 20,
-    color: "#F00",
+    color: '#F00',
   },
-});
+})
 
-export default EventForm;
+export default EventForm

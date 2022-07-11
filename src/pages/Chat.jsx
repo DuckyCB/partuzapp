@@ -1,43 +1,43 @@
-import React, { useState } from "react";
-import { StyleSheet } from "react-native";
-import { Text, useTheme } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
-import HeaderChat from "../components/HeaderChat";
-import { GiftedChat, Bubble } from "react-native-gifted-chat";
-import COLOR from "../constants/Colors";
+import React, { useState } from 'react'
+import { StyleSheet } from 'react-native'
+import { Text, useTheme } from 'react-native-paper'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import HeaderChat from '../components/HeaderChat'
+import { GiftedChat, Bubble } from 'react-native-gifted-chat'
+import COLOR from '../constants/Colors'
 
 const Chat = ({ route }) => {
-  const { colors } = useTheme();
-  const { chatWith } = route.params;
+  const { colors } = useTheme()
+  const { chatWith } = route.params
   const [messages, setMessages] = useState([
     {
       _id: 0,
-      text: "New room created.",
+      text: 'New room created.',
       createdAt: new Date().getTime(),
       system: true,
     },
     {
       _id: 1,
-      text: "No, me voy con la toxi",
+      text: 'No, me voy con la toxi',
       createdAt: new Date().getTime(),
       user: {
         _id: 2,
-        name: "Juan",
+        name: 'Juan',
       },
     },
     {
       _id: 2,
-      text: "Juan hoy se sale?",
+      text: 'Juan hoy se sale?',
       createdAt: new Date().getTime(),
       user: {
         _id: 1,
-        name: "You",
+        name: 'You',
       },
     },
-  ]);
+  ])
 
   function handleSend(newMessage = []) {
-    setMessages(GiftedChat.append(messages, newMessage));
+    setMessages(GiftedChat.append(messages, newMessage))
   }
 
   function renderBubble(props) {
@@ -54,11 +54,11 @@ const Chat = ({ route }) => {
         }}
         textStyle={{
           left: {
-            color: "#fff",
+            color: '#fff',
           },
         }}
       />
-    );
+    )
   }
 
   return (
@@ -73,13 +73,13 @@ const Chat = ({ route }) => {
         renderBubble={renderBubble}
       />
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default Chat;
+export default Chat
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    height: '100%',
   },
-});
+})

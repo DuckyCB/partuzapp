@@ -1,35 +1,37 @@
-import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
-import { Button } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
-import Logo from '../../assets/images/backgroundPartuzapp.png';
+import React from 'react'
+import { View, StyleSheet, ImageBackground } from 'react-native'
+import { Button } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
+import Logo from '../../assets/images/backgroundPartuzapp.png'
 
 const Welcome = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   return (
     <View style={styles.container}>
-
       <ImageBackground
         resizeMode="cover"
         style={styles.backgroudImg}
-        source={ Logo }
+        source={Logo}
       >
-        
-        <Button mode="contained" onPress={() => navigation.navigate('LogIn')} style={styles.button}>
+        <Button
+          mode="contained"
+          onPress={() => navigation.navigate('LogIn')}
+          style={styles.button}
+        >
           LogIn
         </Button>
         <Button
           mode="contained"
-          onPress={() => navigation.navigate("SignUp")}
+          onPress={() => navigation.navigate('SignUp')}
           style={styles.button}
         >
           SignUp
         </Button>
       </ImageBackground>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -40,13 +42,13 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    marginHorizontal: "25%",
+    marginHorizontal: '25%',
     marginVertical: 10,
     top: '60%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f0bbd8',
   },
-});
+})
 
-export default Welcome;
+export default Welcome

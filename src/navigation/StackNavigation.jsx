@@ -1,25 +1,25 @@
-import React, { useEffect, useState, createContext } from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ROUTES from "../constants/Routes";
+import React, { useEffect, useState, createContext } from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ROUTES from '../constants/Routes'
 //Screens
-import Main from "../pages/Main";
-import ChatsList from "../pages/ChatList";
-import EventList from "../pages/EventList";
-import Profile from "../pages/Profile";
-import Chat from "../pages/Chat";
-import EventPartuza from "../pages/EventPartuza";
-import Welcome from "../pages/Welcome";
-import SignUp from "../pages/SignUp";
-import LogIn from "../pages/LogIn";
-import Settings from "../pages/Settings";
-import { loggedUser } from "../utils/localUser";
+import Main from '../pages/Main'
+import ChatsList from '../pages/ChatList'
+import EventList from '../pages/EventList'
+import Profile from '../pages/Profile'
+import Chat from '../pages/Chat'
+import EventPartuza from '../pages/EventPartuza'
+import Welcome from '../pages/Welcome'
+import SignUp from '../pages/SignUp'
+import LogIn from '../pages/LogIn'
+import Settings from '../pages/Settings'
+import { loggedUser } from '../utils/localUser'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
-export const LoginContext = createContext();
+export const LoginContext = createContext()
 
 export default function StackNavigation() {
-  const [user, setUser] = useState(loggedUser());
+  const [user, setUser] = useState(loggedUser())
 
   return (
     <LoginContext.Provider value={{ user, setUser }}>
@@ -54,5 +54,5 @@ export default function StackNavigation() {
         )}
       </Stack.Navigator>
     </LoginContext.Provider>
-  );
+  )
 }

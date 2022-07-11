@@ -1,48 +1,48 @@
-import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
-import Logo from '../../assets/images/partuzappLogo.png';
-import API from '../constants/API';
+import React from 'react'
+import { View, Image, StyleSheet } from 'react-native'
+import { TextInput, Button } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
+import Logo from '../../assets/images/partuzappLogo.png'
+import API from '../constants/API'
 
 const SignUp = () => {
-  const [mail, setMail] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [birthDate, setBirthDate] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [error, setError] = useState('');
+  const [mail, setMail] = React.useState('')
+  const [name, setName] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [lastName, setLastName] = React.useState('')
+  const [birthDate, setBirthDate] = React.useState('')
+  const [description, setDescription] = React.useState('')
+  const [error, setError] = useState('')
 
   const handleSignUp = () => {
     if (mail.length === 0) {
-      setError("Mail cannot be empty");
+      setError('Mail cannot be empty')
     } else if (name.length === 0) {
-      setError("Name cannot be empty");
+      setError('Name cannot be empty')
     } else if (password.length === 0) {
-      setError("Password cannot be empty");
+      setError('Password cannot be empty')
     } else if (lastName.length === 0) {
-      setError("Last name cannot be empty");
+      setError('Last name cannot be empty')
     } else if (birthDate.length === 0) {
-      setError("Birth date cannot be empty");
+      setError('Birth date cannot be empty')
     } else if (description.length === 0) {
-      setError("Description date cannot be empty");
+      setError('Description date cannot be empty')
     } else {
-      axiosInstance.
-      	post(API.USER.POST_CREATE, {
-      		mail,
-      		password
-      	})
-      	.then(() => {
-      		loginLocalUser(mail);
-          setUser(mail);
-      	})
-      	.catch(() => {
-      		setError('Error');
-      		setPassword('');
-      	})
+      axiosInstance
+        .post(API.USER.POST_CREATE, {
+          mail,
+          password,
+        })
+        .then(() => {
+          loginLocalUser(mail)
+          setUser(mail)
+        })
+        .catch(() => {
+          setError('Error')
+          setPassword('')
+        })
     }
-  };
+  }
 
   return (
     <View style={styles.container}>
@@ -88,35 +88,35 @@ const SignUp = () => {
       </Button>
       <Text style={styles.error}>{error}</Text>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     padding: 20,
-    backgroundColor:'white',
+    backgroundColor: 'white',
   },
   image: {
     width: 200,
     height: 200,
-    alignContent: "center",
+    alignContent: 'center',
   },
   input: {
-    marginHorizontal: "25%",
+    marginHorizontal: '25%',
     marginVertical: 10,
     width: '60%',
-    height:'15%',
+    height: '15%',
   },
   button: {
-    marginHorizontal: "25%",
+    marginHorizontal: '25%',
     marginVertical: 10,
   },
   error: {
     fontSize: 20,
     color: '#F00',
-  }
-});
+  },
+})
 
-export default SignUp;
+export default SignUp

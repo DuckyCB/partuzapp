@@ -1,39 +1,39 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import cat from "../../assets/images/cat.png";
-import * as ImagePicker from "expo-image-picker";
-import * as Sharing from "expo-sharing";
+import React from 'react'
+import { StatusBar } from 'expo-status-bar'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import cat from '../../assets/images/cat.png'
+import * as ImagePicker from 'expo-image-picker'
+import * as Sharing from 'expo-sharing'
 
 export default function Settings() {
-  const [selectedImage, setSelectedImage] = React.useState(cat);
+  const [selectedImage, setSelectedImage] = React.useState(cat)
 
   let openImagePickerAsync = async () => {
     let permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
+      await ImagePicker.requestMediaLibraryPermissionsAsync()
 
     if (permissionResult.granted === false) {
-      alert("Permission to access camera roll is required!");
-      return;
+      alert('Permission to access camera roll is required!')
+      return
     }
 
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    let pickerResult = await ImagePicker.launchImageLibraryAsync()
 
     if (pickerResult.cancelled === true) {
-      return;
+      return
     }
 
-    setSelectedImage({ localUri: pickerResult.uri });
-  };
+    setSelectedImage({ localUri: pickerResult.uri })
+  }
 
   let openShareDialogAsync = async () => {
-    if (Platform.OS === "web") {
-      alert(`Uh oh, sharing isn't available on your platform`);
-      return;
+    if (Platform.OS === 'web') {
+      alert(`Uh oh, sharing isn't available on your platform`)
+      return
     }
 
-    await Sharing.shareAsync(selectedImage.localUri);
-  };
+    await Sharing.shareAsync(selectedImage.localUri)
+  }
 
   return (
     <View style={styles.container}>
@@ -53,15 +53,15 @@ export default function Settings() {
       </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   logo: {
     width: 305,
@@ -69,22 +69,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   instructions: {
-    color: "#888",
+    color: '#888',
     fontSize: 18,
     marginHorizontal: 15,
   },
   button: {
-    backgroundColor: "blue",
+    backgroundColor: 'blue',
     padding: 20,
     borderRadius: 5,
   },
   button_text: {
     fontSize: 20,
-    color: "#fff",
+    color: '#fff',
   },
   thumbnail: {
     width: 300,
     height: 300,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
-});
+})

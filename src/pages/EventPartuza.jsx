@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useState, useEffect } from 'react'
+import { View, StyleSheet } from 'react-native'
 import {
   Text,
   Card,
@@ -7,20 +7,20 @@ import {
   Paragraph,
   IconButton,
   useTheme,
-} from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
-import HeaderEventPartuza from "../components/events/HeaderEventPartuza";
-import axiosInstance from "../utils/networking";
-import API from "../constants/API";
+} from 'react-native-paper'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import HeaderEventPartuza from '../components/events/HeaderEventPartuza'
+import axiosInstance from '../utils/networking'
+import API from '../constants/API'
 
 const EventPartuza = ({ route }) => {
-  const { event } = route.params;
-  const { colors } = useTheme();
-  const [actualPerson, setActualPerson] = useState();
+  const { event } = route.params
+  const { colors } = useTheme()
+  const [actualPerson, setActualPerson] = useState()
 
   useEffect(() => {
-    handlePersonUpdate();
-  }, []);
+    handlePersonUpdate()
+  }, [])
 
   const handlePersonUpdate = () => {
     // axiosInstance
@@ -32,14 +32,14 @@ const EventPartuza = ({ route }) => {
     //         console.log('error obteniendo personas');
     //     })
     setActualPerson({
-      name: "Previa",
-      category: "Previa",
-      description: "Sale previa antes de Mona",
+      name: 'Previa',
+      category: 'Previa',
+      description: 'Sale previa antes de Mona',
       matched: true,
-      date: "16/07",
-      img: "https://unsplash.it/300/300/?random&__id=123",
-    });
-  };
+      date: '16/07',
+      img: 'https://unsplash.it/300/300/?random&__id=123',
+    })
+  }
 
   return (
     <SafeAreaView
@@ -79,33 +79,33 @@ const EventPartuza = ({ route }) => {
         )}
       </View>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default EventPartuza;
+export default EventPartuza
 
 const styles = StyleSheet.create({
   containerSafe: {
-    height: "100%",
-    width: "100%",
+    height: '100%',
+    width: '100%',
   },
   container: {
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   card: {
-    width: "80%",
+    width: '80%',
   },
   image: {
-    width: "100%",
+    width: '100%',
     height: 200,
   },
   actions: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
-});
+})
