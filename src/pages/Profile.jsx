@@ -13,10 +13,22 @@ const Profile = () => {
   const [birthDate, setBirthDate] = useState('')
   const [description, setDescription] = useState('')
   const [profilePicture, setProfilePicture] = useState('')
+  const [password, setPassword] = useState('')
   const { user, setUser } = useContext(LoginContext)
 
   const handleSaveProfile = () => {
-    console.log('save profile')
+    axiosInstance
+      .post(API.USER.POST_UPDATE, {
+        mail: user,
+        name,
+        password
+      })
+      .then((res) => {
+        setPassword('')
+      })
+      .catch(() => {
+        log('error requesting user')
+      })
   }
 
   useEffect(() => {
@@ -75,6 +87,13 @@ const Profile = () => {
               label="Description"
               value={description}
               onChangeText={(newDescription) => setDescription(newDescription)}
+              style={styles.description}
+            />
+            <TextInput
+              label="Set new password"
+              value={password}
+              secureTextEntry
+              onChangeText={(password) => setPassword(password)}
               style={styles.description}
             />
             <Button mode="contained" onPress={handleSaveProfile}>

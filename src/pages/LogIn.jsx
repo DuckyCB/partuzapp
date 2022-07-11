@@ -31,8 +31,8 @@ const LogIn = () => {
           loginLocalUser(mail)
           setUser(mail)
         })
-        .catch((err) => {
-          setError(err)
+        .catch(() => {
+          setError('User or password incorrect')
           setPassword('')
         })
     }
