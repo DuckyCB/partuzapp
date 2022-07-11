@@ -119,6 +119,7 @@ const EventForm = ({ closeForm, title, create }) => {
           participants,
           description,
           date,
+          private: {esPrivado: false},
           location,
           categoria: category,
           picture,
@@ -145,7 +146,7 @@ const EventForm = ({ closeForm, title, create }) => {
         />
         <View style={styles.picker}>
           <View style={styles.selection}>
-            <Text style={styles.categoryText}>{category?.name}</Text>
+            <Text style={styles.categoryText}>{category}</Text>
           </View>
           <Button onPress={() => setCategorySelectVisible(true)}>
             Select Category

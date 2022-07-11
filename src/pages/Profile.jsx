@@ -86,20 +86,20 @@ const Profile = () => {
               label="Birth date"
               value={birthDate}
               onChangeText={(birthDate) => setBirthDate(birthDate)}
-              style={styles.description}
+              style={styles.input}
             />
             <TextInput
               label="Description"
               value={description}
               onChangeText={(newDescription) => setDescription(newDescription)}
-              style={styles.description}
+              style={styles.input}
             />
             <TextInput
               label="Set new password"
               value={password}
               secureTextEntry
               onChangeText={(password) => setPassword(password)}
-              style={styles.description}
+              style={styles.input}
             />
             <Button mode="contained" onPress={handleSaveProfile}>
               Save
@@ -125,10 +125,6 @@ const styles = StyleSheet.create({
   },
   input: {
     marginVertical: 10,
-    width: '100%',
-  },
-  description: {
-    marginVertical: 10,
-    width: '100%',
+    width: 200,
   },
 })

@@ -15,7 +15,6 @@ const Discover = () => {
     axiosInstance
       .get(`${API.EVENT.GET_EVENTS_BY_CAT}Todos/public/${user}`)
       .then((res) => {
-        console.log(res.data);
         setEventList(res.data)
         setActualEvent(res.data[0])
       })
