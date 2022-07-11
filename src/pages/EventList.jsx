@@ -42,7 +42,6 @@ const EventList = () => {
     axiosInstance
       .get(`${API.EVENT.GET_EVENTS_BY_CAT}MisEventos/public/${user}`)
       .then((res) => {
-        console.log(res.data);
         setEventList(res.data)
       })
       .catch(() => {

@@ -23,7 +23,6 @@ const EventPartuza = ({ route }) => {
 
   useEffect(() => {
     loggedUser().then((res) => setUser(res))
-    handlePersonUpdate()
   }, [])
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const EventPartuza = ({ route }) => {
 
   const handlePersonUpdate = () => {
     axiosInstance
-      .get(`${API.EVENT.GET_EVENTS_BY_CAT}MisEventos/private/${user}`)
+      .get(`${API.EVENT.GET_EVENTS_BY_CAT}Pendientes/private/${user}`)
       .then((res) => {
         console.log(res.data)
         setEventList(res.data)
