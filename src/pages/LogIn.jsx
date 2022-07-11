@@ -76,6 +76,7 @@ const LogIn = () => {
 const styles = StyleSheet.create({
   safeContainer: {
     height: '100%',
+    backgroundColor:"#f6f6f6"
   },
   container: {
     flex: 1,
