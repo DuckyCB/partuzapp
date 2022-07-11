@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet, ScrollView } from 'react-native'
 import { TextInput, Button, Text, useTheme } from 'react-native-paper'
 import Logo from '../../assets/images/appLogo.png'
 import axiosInstance from '../utils/networking'
@@ -41,32 +41,34 @@ const LogIn = () => {
   return (
     <SafeAreaView style={styles.safeContainer}>
       <HeaderBack color="#9e6ce3" name="LogIn" />
-      <View style={[styles.container, { backgroundColor: colors.background }]}>
-        <Image source={Logo} resizeMode="contain" style={styles.image} />
-        <TextInput
-          label="mail"
-          value={mail}
-          onChangeText={(mail) => {
-            setMail(mail)
-            setError('')
-          }}
-          style={styles.input}
-        />
-        <TextInput
-          label="password"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(password) => {
-            setPassword(password)
-            setError('')
-          }}
-          style={styles.input}
-        />
-        <Button mode="contained" onPress={handleLogin} style={styles.button}>
-          LogIn
-        </Button>
-        <Text style={styles.error}>{error}</Text>
-      </View>
+      <ScrollView>
+        <View style={[styles.container, { backgroundColor: colors.background }]}>
+          <Image source={Logo} resizeMode="contain" style={styles.image} />
+          <TextInput
+            label="mail"
+            value={mail}
+            onChangeText={(mail) => {
+              setMail(mail)
+              setError('')
+            }}
+            style={styles.input}
+          />
+          <TextInput
+            label="password"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(password) => {
+              setPassword(password)
+              setError('')
+            }}
+            style={styles.input}
+          />
+          <Button mode="contained" onPress={handleLogin} style={styles.button}>
+            LogIn
+          </Button>
+          <Text style={styles.error}>{error}</Text>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -79,6 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 20,
+    height: '100%',
   },
   image: {
     width: 300,
